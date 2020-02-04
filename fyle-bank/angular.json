@@ -23,9 +23,15 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "node_modules/ngx-toastr/toastr.css",
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/assets/css/datatable.bootstrap4.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "node_modules/datatables.net/js/jquery.dataTables.js",
+              "src/assets/js/datatable.bootstrap4.js"
+            ],
             "es5BrowserSupport": true
           },
           "configurations": {

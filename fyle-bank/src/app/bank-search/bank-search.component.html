@@ -1,0 +1,30 @@
+<div class="p-3">
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table text-center" >
+        <thead class="thead-light">
+            <tr>
+                <th>Bank Name</th>
+                <th>IFSC</th>
+                <th>Branch</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Address</th>
+                <th class="remove-sort">Actions</th>
+            </tr>
+        </thead>
+        <tbody >
+            <tr *ngFor="let bank of bankList" >
+                <td>{{ bank.bank_name }}</td>
+                <td>{{ bank.ifsc }}</td>
+                <td>{{ bank.branch}}</td>
+                <td>{{ bank.city}}</td>
+                <td>{{ bank.state}}</td>
+                <td>{{ bank.address}}</td>
+                <td>
+                    <button type="button" class="btn btn-success btn-sm mr-2" (click)="addFavorite(bank)"> <span
+                            class=""> <i class="fas fa-user-edit "></i></span> </button>
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+</div>
