@@ -7,9 +7,12 @@ import { HttpClient, HttpHeaders} from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { map, catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Injectable()
 export class BankSearchService {
+
+    public responseCache = new Map();
 
     constructor(private http: HttpClient  ) {
     }
@@ -25,9 +28,15 @@ export class BankSearchService {
             })
         };
 
+        const fromCache = this.responseCache.get(cityName);
+        if (fromCache) {
+            return of(fromCache);
+        }
+
         return this.http.get(url,httpOptions) // ...using get request
             .pipe(
                 map(resp => {
+                        this.responseCache.set(cityName, resp);
                         return resp;
                 }),
                 catchError(error => Observable.throw(error.error)) //...errors if any

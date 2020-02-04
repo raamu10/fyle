@@ -41,7 +41,33 @@ export class BankSearchComponent implements OnInit, OnDestroy, AfterViewInit {
         };
 
         var favBank = this.cookieService.get('favBank');
-        this.savedFavBank = favBank ? JSON.parse(favBank) : [];
+        this.favBankList = favBank ? JSON.parse(favBank) : [];
+    }
+
+    setFavEnable (bankList) {
+
+        if (this.favBankList.length > 0 ){
+
+            this.favBankList.forEach(favBank => {
+
+                /* bankList.forEach(bank => {
+                    
+                    if (bank.ifsc === favBank.ifsc) {
+                        bank.isFav = true;
+                    }
+                }); */
+
+                var filteredBank = bankList.find(bank => {
+                    return bank.ifsc === favBank.ifsc;
+                });
+
+                if (filteredBank) {
+                    filteredBank.isFav = true;
+                }
+                
+            });
+
+        }
     }
 
     /**
@@ -51,11 +77,10 @@ export class BankSearchComponent implements OnInit, OnDestroy, AfterViewInit {
      * Get list of banks for selected city
      */
     getBankList(cityName) {
-        console.log("in getBanks");
         this.loaderService.display(true);
         this.bankSearchService.getBankData(cityName).subscribe(res => {
-            console.log("res:", res);
             this.bankList = res;
+            this.setFavEnable(this.bankList);
             this.rerenderTable();
             this.loaderService.display(false);
         }, err => {
@@ -113,7 +138,5 @@ export class BankSearchComponent implements OnInit, OnDestroy, AfterViewInit {
         }
 
         this.cookieService.set('favBank', JSON.stringify(this.favBankList));
-
-        console.log(this.cookieService.get('favBank'));
     }
 }

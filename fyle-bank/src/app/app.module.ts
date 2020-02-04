@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 
 import { LoaderService } from './shared/loader/loader.service';
 import { LoaderComponent } from './shared/loader/component/loader.component';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { LoaderComponent } from './shared/loader/component/loader.component';
     AppRoutingModule,
   ],
   providers: [
-    LoaderService
+    LoaderService,
+    CookieService
   ],
   bootstrap: [AppComponent]
 })
