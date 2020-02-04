@@ -27,7 +27,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let bank of bankList">
-                    <td>{{ bank.bank_name }}</td>
+                    <td class="cursor-pointer text-info" (click)="viewBankModal(bankModal, bank)">{{ bank.bank_name }}</td>
                     <td>{{ bank.ifsc }}</td>
                     <td>{{ bank.branch}}</td>
                     <td>{{ bank.city}}</td>
@@ -48,3 +48,55 @@
 
     </div>
 </div>
+
+<ng-template #bankModal let-modal id="bankModal">
+    <div>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Bank Details</h4>
+            <button class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <label for="name">Name :</label> {{bankData.bank_name}}
+                    </div>
+                    <div class="col-lg-6">
+                        <label for="ifsc">IFSC : </label> {{bankData.ifsc}}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <label for="name">Branch :</label> {{bankData.branch}}
+                    </div>
+                    <div class="col-lg-6">
+                        <label for="ifsc">City : </label> {{bankData.city}}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <label for="name">District :</label> {{bankData.district}}
+                    </div>
+                    <div class="col-lg-6">
+                        <label for="ifsc">State : </label> {{bankData.state}}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <label for="name">Address :</label> {{bankData.address}}
+                    </div>
+                </div>
+
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary m-3" (click)="modal.dismiss('Cross click')">Close</button>
+            
+        </div>
+    </div>
+</ng-template>

@@ -27,9 +27,11 @@ export class BankSearchComponent implements OnInit, OnDestroy, AfterViewInit {
 
     public selectedCity = '';
     public cityList= ['BANGALORE', 'CHENNAI', 'KOLKATA', 'MUMBAI', 'PUNE'];
+
+    public bankData: any = {};
     
     constructor (private bankSearchService: BankSearchService, private loaderService: LoaderService,
-        private cookieService: CookieService) {
+        private cookieService: CookieService, private modalService: NgbModal) {
 
     }
 
@@ -138,5 +140,14 @@ export class BankSearchComponent implements OnInit, OnDestroy, AfterViewInit {
         }
 
         this.cookieService.set('favBank', JSON.stringify(this.favBankList));
+    }
+
+    viewBankModal(modal, bank) {
+
+        this.bankData = bank;
+
+        this.modalService.open(modal, { ariaLabelledBy: 'modal-basic-title', size: 'lg' }).result.then((result) => {
+        }, (reason) => {
+        });
     }
 }
