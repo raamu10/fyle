@@ -1,0 +1,9 @@
+.remove-sort::before {
+    right: 0px !important;
+    content: '' !important;
+}
+
+.remove-sort::after {
+    right: 0px !important;
+    content: '' !important;
+}

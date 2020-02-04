@@ -14,9 +14,9 @@ export class BankSearchService {
     constructor(private http: HttpClient  ) {
     }
 
-    getBankData() {
+    getBankData(cityName) {
 
-        var url = 'https://vast-shore-74260.herokuapp.com/banks?city=MUMBAI';
+        var url = 'https://vast-shore-74260.herokuapp.com/banks?city=' + cityName;
 
         const httpOptions = {
             headers: new HttpHeaders({

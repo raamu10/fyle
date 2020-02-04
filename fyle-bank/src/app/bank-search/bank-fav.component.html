@@ -1,18 +1,14 @@
 <div class="p-3">
     <div class="row">
         <div class="form-group col-lg-4 col-md-6">
-            <label for="city">Select city</label>
-            <select class="form-control" id="city" [(ngModel)]="selectedCity" (change)="getBankList(selectedCity)">
-                <option value="">Select a city</option>
-                <option *ngFor="let city of cityList"> {{city}} </option>
-            </select>
+            <h2 for="city">Favourite Banks</h2>
         </div>
         <div class="col-lg-8 col-md-6">
-            <button class="btn btn-small btn-secondary shadow float-right mt-4" [routerLink]="['favouriteBank']">
-                <i class="fas fa-star fa-2 mr-2" style="color:yellow"></i>Favorite Banks</button>
+            <button class="btn btn-small btn-secondary shadow float-right" [routerLink]="['/bankSearch']">
+                <i class="fas fa-search fa-2 mr-2"></i>Search Bank</button>
         </div>
     </div>
-    <div>
+    <div class="">
         <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table text-center">
             <thead class="thead-light">
                 <tr>
@@ -22,25 +18,25 @@
                     <th>City</th>
                     <th>State</th>
                     <th>Address</th>
-                    <th class="remove-sort">Actions</th>
+                    <!-- <th class="remove-sort">Actions</th> -->
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let bank of bankList">
+                <tr *ngFor="let bank of favBankList">
                     <td>{{ bank.bank_name }}</td>
                     <td>{{ bank.ifsc }}</td>
                     <td>{{ bank.branch}}</td>
                     <td>{{ bank.city}}</td>
                     <td>{{ bank.state}}</td>
                     <td>{{ bank.address}}</td>
-                    <td>
+                    <!-- <td>
                         <button type="button" class="btn btn-success btn-sm mr-2" (click)="addFavorite(bank)">
                             <span class="">
                                 <i class="fas fa-star fa-2" *ngIf="!bank.isFav"></i>
                                 <i class="fas fa-star fa-2" *ngIf="bank.isFav" style="color:yellow"></i>
                             </span>
                         </button>
-                    </td>
+                    </td> -->
                 </tr>
             </tbody>
 
